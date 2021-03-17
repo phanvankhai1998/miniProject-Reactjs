@@ -9,34 +9,22 @@ const styles = {
     }
 }
 
-
 class CartItem extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            price: 999,
-            title: 'Vinfast Phone',
-            qty: 1,
-            img: ' '
-        };
-        this.testing();
-    }
+    // testing() {
+    //     const promise = new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             resolve('done');
+    //         }, 5000);
+    //     });
 
-    testing() {
-        const promise = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve('done');
-            }, 5000);
-        });
-
-        promise.then(() => {
-            //setState acts like a synchronous call    
-            this.setState({
-                qty: this.state.qty + 10
-            });
-            console.log('This is state:', this.state);
-        });
-    }
+    //     promise.then(() => {
+    //         //setState acts like a synchronous call    
+    //         this.setState({
+    //             qty: this.state.qty + 10
+    //         });
+    //         console.log('This is state:', this.state);
+    //     });
+    // }
 
     increaseQuantity = () => {
         //console.log("This state:", this.state);
@@ -65,15 +53,15 @@ class CartItem extends React.Component {
     }
 
     render() {
-        const { price, title, qty } = this.state;
+        const { price, title, qty } = this.props.product;
         console.log("This is state:", this.state);
         console.log("This is props:", this.props);
 
         return (
             <div className="cart-item">
+                {this.props.jsx}
                 <div className="left-block">
                     <img style={styles.image} alt="#" src="https://www.flaticon.com/svg/vstatic/svg/1721/1721929.svg?token=exp=1615974575~hmac=440b022a30a6e0ba969bad07f260f627" /><br />
-
                 </div>
 
                 <div
