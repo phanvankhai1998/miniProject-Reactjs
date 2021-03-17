@@ -3,9 +3,34 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header';
 import Product from './components/Product';
-import CartItem from './components/CartItem';
-import Cart from './components/Cart';
 
+// function App() {
+//   return (
+//     <div className="App">
+//       <header className="App-header">
+//         <h1>AppComponent</h1>
+//         <h2>Hello world!</h2>
+//         <img src={logo} className="App-logo" alt="logo" />
+//         <p>
+//           Edit <code>src/App.js</code> and save to reload.
+//         </p>
+//         <a
+//           className="App-link"
+//           href="https://reactjs.org"
+//           target="_blank"
+//           rel="noopener noreferrer"
+//         >
+//           Learn React
+//         </a>
+//         <Header>
+//           <h3>
+//             Header
+//         </h3>
+//         </Header>
+//       </header>
+//     </div>
+//   );
+// }
 
 class App extends Component {
     render() {
@@ -42,19 +67,11 @@ class App extends Component {
                                 </Product>
                             </div>
                             <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <Product>
-                                    <div>
 
-                                    </div>
-                                </Product>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-                <h1>Cart</h1>
-                <Cart />
             </div>
         );
     }
