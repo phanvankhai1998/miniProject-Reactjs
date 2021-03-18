@@ -36,6 +36,6 @@ code {
 }
 
 .cart{
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
 }
