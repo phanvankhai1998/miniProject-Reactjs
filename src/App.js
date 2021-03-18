@@ -33,14 +33,40 @@ class App extends Component {
             ],
             loading: true
         }
+
+        this.db = firebase.firestore();
     }
 
     componentDidMount() {
-        firebase
-            .firestore()
+        // firebase
+        //     .firestore()
+        //     .collection('products')
+        //     .get()
+        //     .then((snapshot) => {
+        //         console.log(snapshot);
+
+        //         snapshot.docs.map((doc) => {
+        //             console.log(doc.data());
+        //         });
+
+        //         const products = snapshot.docs.map((doc) => {
+        //             const data = doc.data();
+
+        //             data['id'] = doc.id
+        //             return data;
+        //         });
+
+        //         this.setState({
+        //             products,
+        //             loading: false
+        //         });
+        //     })
+
+        // firebase
+        //     .firestore()
+        this.db
             .collection('products')
-            .get()
-            .then((snapshot) => {
+            .onSnapshot((snapshot) => {
                 console.log(snapshot);
 
                 snapshot.docs.map((doc) => {
@@ -120,6 +146,22 @@ class App extends Component {
         return cartTotal;
     }
 
+    addProduct = () => {
+        this.db
+            .collection('products')
+            .add({
+                img: '',
+                price: 900,
+                qty: 3,
+                title: 'Washing Machine'
+            })
+            .then((docRef) => {
+                console.log('Product has been added:', docRef);
+            })
+            .catch((error) => {
+                console.log('Error:', error);
+            })
+    }
 
     render() {
         console.log("Rendering...")
@@ -130,13 +172,18 @@ class App extends Component {
             <div className="App" >
                 <h1>Cart</h1>
                 <Navbar count={this.getCartCount()} />
+                <button
+                    onClick={this.addProduct}
+                    style={{ padding: 20, fontSize: 20 }}
+                >Add a product
+                </button>
                 <Cart
                     products={products}
                     onIncreasQuantity={this.handleInCreaseQuantity}
                     onDecreasQuantity={this.handleDecreasQuantity}
                     onDeleteQuantity={this.handleDeleteProduct}
                 />
-                {loading && <h1>Loading Products...</h1>}
+                { loading && <h1>Loading Products...</h1>}
                 <div style={{ padding: 10, fontSize: 20 }}>Total:{this.getCartTotal()}</div>
             </div>
         );
