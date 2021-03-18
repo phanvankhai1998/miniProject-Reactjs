@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 class App extends Component {
     constructor() {
         super();
+        console.log("This is constructor");
         this.state = {
             products: [
                 {
@@ -40,7 +41,6 @@ class App extends Component {
         products[index].qty += 1;
         this.setState({
             products
-
         });
     }
 
@@ -85,56 +85,30 @@ class App extends Component {
         let cartTotal = 0;
 
         products.map((product) => {
-            cartTotal = cartTotal + product.qty * product.price
-        })
-
+            if (product.qty > 0) {
+                cartTotal = cartTotal + product.qty * product.price;
+            }
+            return '';
+        });
         return cartTotal;
     }
 
+    componentDidMount() {
+        console.log("Component Did Mount");
+        const { products } = this.state;
+        this.setState({
+            products
+        });
+    }
+
     render() {
+
+        console.log("Rendering...")
+        console.log("This is state:", this.state);
+        console.log("This is props:", this.props);
         const { products } = this.state;
         return (
             <div className="App" >
-                {/* <header className="App-header">
-                    <h1>AppComponent</h1>
-                    <h2>Hello world!</h2>
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <p>Edit <code>src/App.js</code> and save to reload.</p>
-                    <a
-                        className="App-link"
-                        href="https://reactjs.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Learn React
-                    </a>
-                </header> */}
-                {/* <div>
-                    <div>
-                        <Header>
-                            <h3>
-                                Header
-                            </h3>
-                        </Header>
-
-                        <div className="row">
-                            <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <Product>
-                                    <div>
-
-                                    </div>
-                                </Product>
-                            </div>
-                            <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <Product>
-                                    <div>
-
-                                    </div>
-                                </Product>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
                 <h1>Cart</h1>
                 <Navbar
                     count={this.getCartCount()}
