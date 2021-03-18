@@ -66,6 +66,10 @@ class App extends Component {
         //     .firestore()
         this.db
             .collection('products')
+            // .where('price', '==', 1000)
+            // .where('price', '==', 3000)
+            // .orderBy('price', 'asc')
+            .orderBy('price', 'desc')
             .onSnapshot((snapshot) => {
                 console.log(snapshot);
 
